@@ -39,6 +39,7 @@ export function addTask(name) {
 
 // Função para remover uma tarefa
 export function removeTask(name) {
+  name = name.toUpperCase();
   const tasks = loadTasks();
   const filteredTasks = tasks.filter((task) => task.name !== name);
 
