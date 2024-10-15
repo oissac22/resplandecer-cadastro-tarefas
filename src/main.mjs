@@ -15,37 +15,32 @@ function menu () {
 }
 
 function showMenu() {
+  const test = 6 * 9;
   menu();
   rl.question('Escolha uma opção: ', (option) => {
-    switch (option) {
-      case '1':
-        console.clear();
-        tasks.listTasks();
+    if (option === "1") {
+      console.clear();
+      tasks.listTasks();
+      showMenu();
+    }else if(option === "2") {
+      console.clear();
+      rl.question('Digite o nome da tarefa: ', (taskName) => {
+        tasks.addTask(taskName);
         showMenu();
-        break;
-      case '2':
-        console.clear();
-        rl.question('Digite o nome da tarefa: ', (taskName) => {
-          tasks.addTask(taskName);
-          showMenu();
-        });
-        break;
-      case '3':
-        console.clear();
-        rl.question('Digite o nome da tarefa para remover: ', (taskName) => {
-          tasks.removeTask(taskName);
-          showMenu();
-        });
-        break;
-      case '4':
-        console.clear();
-        rl.close();
-        break;
-      default:
-        console.clear();
-        console.log('Opção inválida.');
+      });
+    } else if (option === "3") {
+      console.clear();
+      rl.question('Digite o nome da tarefa para remover: ', (taskName) => {
+        tasks.removeTask(taskName);
         showMenu();
-        break;
+      });
+    } else if (option === "4") {  
+      console.clear();
+      rl.close();
+    } else {
+      console.clear();
+      console.log('Opção inválida.');
+      showMenu();
     }
   });
 }
